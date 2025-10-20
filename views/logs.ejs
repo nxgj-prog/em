@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mail Tracker - Logs</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Logs for <%= pixel.name %></h1>
+    <p>Created At: <%= pixel.createdAt %></p>
+
+    <h2>Open Events</h2>
+    <p style="font-style: italic;">
+      You may see extra logs if bots (for example, GoogleImageProxy via ggpht.com) or the email client repeatedly load the image.
+      Check each log's timestamp to distinguish real user opens from proxy fetches.
+    </p>
+
+    <table border="1">
+      <thead>
+        <tr><th>Time</th><th>IP</th><th>User-Agent</th></tr>
+      </thead>
+      <tbody>
+        <% logs.forEach(log => { %>
+          <tr>
+            <td><%= log.timestamp %></td>
+            <td><%= log.ip %></td>
+            <td><%= log.userAgent %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
