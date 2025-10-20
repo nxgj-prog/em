@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mail Tracker - Dashboard</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>Mail Tracker - Dashboard</h1>
+
+    <h2>Create a New Tracking Pixel</h2>
+    <form action="/create" method="POST">
+      <label>Pixel Name (optional):</label>
+      <input type="text" name="name" />
+      <button type="submit">Create Pixel</button>
+    </form>
+
+    <hr />
+
+    <h2>Existing Pixels</h2>
+    <table border="1">
+      <thead>
+        <tr><th>Name</th><th>ID</th><th>Created</th><th>Tracker URL</th><th>Logs</th></tr>
+      </thead>
+      <tbody>
+        <% pixels.forEach(pixel => { %>
+          <tr>
+            <td><%= pixel.name %></td>
+            <td><%= pixel.id %></td>
+            <td><%= pixel.createdAt %></td>
+            <td><a href="<%= baseUrl %>/tracker/<%= pixel.id %>.png" target="_blank"><%= baseUrl %>/tracker/<%= pixel.id %>.png</a></td>
+            <td><a href="/logs/<%= pixel.id %>">View Logs</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
